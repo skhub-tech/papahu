@@ -1,3 +1,34 @@
+<div style="padding: 15px; background: #eef2f7; border-radius: 10px; border: 1px solid #d1d9e6; margin-bottom: 25px; font-family: sans-serif;">
+    <h3 style="margin-top: 0; color: #2c3e50;">📋 Word Export Tool</h3>
+    <p style="font-size: 0.9em; color: #5d6d7e;">Click the button below to copy the report text without Markdown symbols (like # or *) so you can paste it directly into Microsoft Word.</p>
+    <button id="copyBtn" onclick="copyForWord()" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background 0.3s;">
+        Copy Report for Word
+    </button>
+</div>
+
+<script>
+function copyForWord() {
+    // Select all text after this div
+    const content = document.body.innerText.split('Word Export Tool')[1] || '';
+    // Remove Markdown symbols for Word
+    const cleanContent = content
+        .replace(/[#*`]/g, '')
+        .replace(/\|/g, ' ')
+        .replace(/--+/g, '')
+        .trim();
+    
+    navigator.clipboard.writeText(cleanContent).then(() => {
+        const btn = document.getElementById('copyBtn');
+        btn.innerText = '✅ Copied!';
+        btn.style.background = '#28a745';
+        setTimeout(() => {
+            btn.innerText = 'Copy Report for Word';
+            btn.style.background = '#007bff';
+        }, 3000);
+    });
+}
+</script>
+
 # DEVICE DOCTOR: REVISED PROJECT REPORT (CHAPTER 5 - 7)
 
 ## CHAPTER 5: IMPLEMENTATION AND TESTING
